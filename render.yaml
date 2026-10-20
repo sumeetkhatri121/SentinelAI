@@ -1,0 +1,14 @@
+services:
+  # Option 1: Python Web Service (Ultra-lightweight proxy ~25MB RAM)
+  - type: web
+    name: sentinelai-frontend
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: HF_SPACE_URL
+        value: https://not-omega-sentinelai.hf.space
+      - key: PORT
+        value: "10000"
